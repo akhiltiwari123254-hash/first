@@ -3,75 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Minds hub</title>
+    <title>Smart Minds Hub | Academic Excellence</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #7c3aed;
+            --background-color: #f7f7fe;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa ;
-            /* Subtle background pattern with stationary tools */
+            background-color: var(--background-color);
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(165, 180, 252, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 85% 30%, rgba(165, 180, 252, 0.05) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.04) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.04) 0%, transparent 30%);
         }
         .gradient-text {
-            background: linear-gradient(to right, #4f46e5, #8b5cf6);
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .card-hover {
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.3s ease;
-            border: 1px solid transparent;
         }
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: #c7d2fe;
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.15);
+            border-color: rgba(79, 70, 229, 0.2);
         }
         .notification-dot {
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
+            50% { opacity: 0.7; transform: scale(1.15); }
         }
         
-        /* Fade-in on scroll animation */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .header-scrolled {
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+        /* Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        
+        .wave-divider {
+            position: relative;
+            background: var(--background-color);
+        }
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 120px;
+        }
+        .wave .shape-fill {
+            fill: #FFFFFF;
         }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Header -->
-    <header id="header" class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50 transition-all duration-300">
+    <header id="header" class="bg-white/70 backdrop-blur-lg shadow-sm sticky top-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                <img src="SMH2.png" alt="smart minds hub logo" class="h-12 w-12 object-contain">               
                 <a href="#" class="text-2xl font-bold text-gray-800">SMART MINDS <span class="text-indigo-600">HUB</span></a>
             </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-300">About us</a>
-                <a href="#materials" class="text-gray-600 hover:text-indigo-600 transition duration-300">Study Material</a>
-                <a href="#notifications" class="text-gray-600 hover:text-indigo-600 transition duration-300">Notifications</a>
-                <a href="#students" class="text-gray-600 hover:text-indigo-600 transition duration-300">Our Students</a>
-                <a href="#tutor" class="text-gray-600 hover:text-indigo-600 transition duration-300">About Tutor</a>
-               
-               
-                
+            <div class="hidden md:flex items-center space-x-8 font-medium">
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-300">About</a>
+                <a href="#features" class="text-gray-600 hover:text-indigo-600 transition duration-300">Features</a>
+                <a href="#materials" class="text-gray-600 hover:text-indigo-600 transition duration-300">Materials</a>
+                <a href="#students" class="text-gray-600 hover:text-indigo-600 transition duration-300">Students</a>
+                <a href="#tutor" class="text-gray-600 hover:text-indigo-600 transition duration-300">Tutor</a>
             </div>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-gray-600 hover:text-indigo-600 focus:outline-none">
@@ -81,246 +108,294 @@
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="#about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">About</a>
-            <a href="#students" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">Our Students</a>
+            <a href="#features" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">Features</a>
             <a href="#materials" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">Study Material</a>
-            <a href="#notifications" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">Notifications</a>
+            <a href="#students" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">Our Students</a>
+            <a href="#tutor" class="block py-2 px-4 text-sm text-gray-600 hover:bg-indigo-50">Tutor</a>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="about" class="bg-white">
-            <div class="container mx-auto px-6 py-24 text-center fade-in-section">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight">Welcome to <span class="gradient-text">Smart Minds Hub</span></h1>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">“Your dedicated partner in achieving academic excellence. We provide personalized tutoring and resources to help students succeed. At Smart Minds Hub, we believe every student has unique potential waiting to be unlocked. Our experienced educators are committed to nurturing curiosity, building confidence, and inspiring lifelong learning. Together, we pave the pathway to success, empowering students to dream big and achieve more.”</p>
-                <p class="text-sm text-gray-500 mt-2"></p>
+        <section id="about" class="relative">
+            <div class="container mx-auto px-6 py-28 text-center fade-in-section">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tighter">Unlock Your Potential with <span class="gradient-text">Smart Minds Hub</span></h1>
+                <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">Your dedicated partner in academic excellence. We provide personalized tutoring and premium resources to nurture curiosity, build confidence, and inspire a lifelong love for learning.</p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#materials" class="bg-indigo-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">Explore Materials</a>
+                    <a href="http://biharboardonline.bihar.gov.in/" target="_blank" class="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 border border-indigo-200">Bihar Board Site</a>
+                </div>
+            </div>
+            <!-- <div class="wave-divider">
+                <div class="wave">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+                    </svg>
+                </div>
+            </div> -->
+        </section>
+
+        <section id="features" class="bg-white py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in-section">
+                    <h2 class="text-3xl md:text-4xl font-bold">Why Smart Minds Hub?</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">We are committed to providing an environment where students thrive.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center p-8 glass-card rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mx-auto mb-6">
+                            <svg class="h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Expert Tutors</h3>
+                        <p class="text-gray-600">Learn from passionate educators dedicated to making complex topics simple and understandable.</p>
+                    </div>
+                    <div class="text-center p-8 glass-card rounded-2xl fade-in-section" style="transition-delay: 150ms;">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mx-auto mb-6">
+                            <svg class="h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Proven Results</h3>
+                        <p class="text-gray-600">Our students consistently achieve higher grades and gain confidence in their abilities.</p>
+                    </div>
+                    <div class="text-center p-8 glass-card rounded-2xl fade-in-section" style="transition-delay: 300ms;">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mx-auto mb-6">
+                            <svg class="h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Curated Resources</h3>
+                        <p class="text-gray-600">Access high-quality PYQs, notes, and syllabus breakdowns tailored for success.</p>
+                    </div>
+                </div>
+                 <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in-section">
+                    <div>
+                        <h3 class="text-4xl font-bold gradient-text" data-target="50">0</h3>
+                        <p class="text-gray-500 mt-1">Happy Students</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold gradient-text" data-target="6">0</h3>
+                        <p class="text-gray-500 mt-1">Subjects Taught</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold gradient-text" data-target="200">0</h3>
+                        <p class="text-gray-500 mt-1">PYQs Solved</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold gradient-text" data-target="95">0</h3>
+                        <p class="text-gray-500 mt-1">Success Rate (%)</p>
+                    </div>
+                </div>
             </div>
         </section>
-        
- <!-- Study Material & Notifications Section -->
-        <section class="bg-white py-24">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16">
-                <div id="materials" class="fade-in-section">
-                    <h2 class="text-3xl font-bold mb-8">Study Material</h2>
+
+        <section id="materials" class="py-24">
+            <div class="container mx-auto px-6 grid lg:grid-cols-5 gap-12">
+                <div class="lg:col-span-3 fade-in-section">
+                    <h2 class="text-3xl font-bold mb-8">Download Previous Year Questions</h2>
                     <div class="space-y-4">
-                        <!-- Material Item -->
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Mathematics pyqs</span>
-                            </div>
-                            <a href="maths.pdf" class="text-indigo-600 hover:underline font-semibold">Download</a>
+                        <a href="maths.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-indigo-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">Mathematics PYQs</span></div><span class="text-indigo-600 hover:underline font-semibold">Download</span>
+                        </a>
+                        <a href="english.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-yellow-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">English PYQs</span></div><span class="text-yellow-600 hover:underline font-semibold">Download</span>
+                        </a>
+                        <a href="science.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-green-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">Science PYQs</span></div><span class="text-green-600 hover:underline font-semibold">Download</span>
+                        </a>
+                        <a href="socialscience.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-yellow-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">Social Science PYQs</span></div><span class="text-yellow-600 hover:underline font-semibold">Download</span>
+                        </a>
+                        <a href="hindi.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-yellow-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">Hindi PYQs</span></div><span class="text-yellow-600 hover:underline font-semibold">Download</span>
+                        </a>
+                        
+                        <a href="sanskrit.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-yellow-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">Sanskrit PYQs</span></div><span class="text-yellow-600 hover:underline font-semibold">Download</span>
+                        </a>
+                         
                         </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Science pyqs</span>
-                            </div>
-                            <a href="science.pdf" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Social Science pyqs</span>
-                            </div>
-                            <a href="socialscience.pdf" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">English pyqs</span>
-                            </div>
-                            <a href="english.pdf" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Hindi pyqs</span>
-                            </div>
-                            <a href="hindi.pdf" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Sanskrit pyqs</span>
-                            </div>
-                            <a href="sanskrit.pdf" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
+                    <h2 class="text-3xl font-bold mb-8 mt-12">Download Syllabus</h2>
+                    <div class="space-y-4">
+                        <a href="syll.pdf" class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border-l-4 border-red-500">
+                            <div class="flex items-center space-x-4"><svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg><span class="font-medium">Complete Syllabus (All Subjects)</span></div><span class="text-red-600 hover:underline font-semibold">Download</span>
+                        </a>
                     </div>
                 </div>
                
-                <div id="notifications" class="fade-in-section" style="transition-delay: 100ms;">
+                <div id="notifications" class="lg:col-span-2 fade-in-section" style="transition-delay: 150ms;">
                     <h2 class="text-3xl font-bold mb-8">Notifications</h2>
                     <div class="space-y-6">
                         <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg shadow-sm">
                             <div class="flex items-start space-x-3">
                                 <span class="h-2.5 w-2.5 bg-blue-500 rounded-full mt-1.5 notification-dot"></span>
-                                <div>
-                                    <p class="font-semibold text-blue-800">Upcoming Test</p>
-                                    <p class="text-sm text-gray-600">Mathematics Chapter 5 test scheduled for this Friday. Be prepared!</p>
-                                </div>
+                                <div><p class="font-semibold text-blue-800">Upcoming Test</p><p class="text-sm text-gray-600">Mathematics Chapter 5 test scheduled for this Friday. Be prepared!</p></div>
                             </div>
                         </div>
                         <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg shadow-sm">
                              <div class="flex items-start space-x-3">
                                 <span class="h-2.5 w-2.5 bg-green-500 rounded-full mt-1.5"></span>
-                                <div>
-                                    <p class="font-semibold text-green-800">Holiday Announcement</p>
-                                    <p class="text-sm text-gray-600">The center will be closed next Monday for a public holiday.</p>
-                                </div>
+                                <div><p class="font-semibold text-green-800">Holiday Announcement</p><p class="text-sm text-gray-600">The center will be closed next Monday for a public holiday.</p></div>
                             </div>
                         </div>
                         <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg shadow-sm">
                              <div class="flex items-start space-x-3">
                                 <span class="h-2.5 w-2.5 bg-yellow-500 rounded-full mt-1.5"></span>
-                                <div>
-                                    <p class="font-semibold text-yellow-800">Homework Reminder</p>
-                                    <p class="text-sm text-gray-600">Please submit the Social Science project by the end of this week.</p>
-                                </div>
+                                <div><p class="font-semibold text-yellow-800">Homework Reminder</p><p class="text-sm text-gray-600">Please submit the Social Science project by the end of this week.</p></div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Bihar Board Official Website Link -->
-                <div class="mt-8 text-center">
-    <a href="http://biharboardonline.bihar.gov.in/" target="_blank" 
-       class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300">
-        Visit Bihar Board Official Site
-    </a>
-        </section>
-         <!-- Study Material -->
-        <section class="bg-white py-24">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16">
-                <div id="materials" class="fade-in-section">
-                    <h2 class="text-3xl font-bold mb-8"> Other Study Materials</h2>
-                    <div class="space-y-4">
-                        <!-- Material Item -->
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Mathematics Syllabus</span>
-                            </div>
-                            <a href="#" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Science Syllabus</span>
-                            </div>
-                            <a href="#" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">Social Science Syllabus</span>
-                            </div>
-                            <a href="#" class="text-indigo-600 hover:underline font-semibold">Download</a>
-                        </div>
-                        <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg card-hover border-l-4 border-indigo-500">
-                            <div class="flex items-center space-x-4">
-                               <svg class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                <span class="font-medium">English, Hindi & Sanskrit Syllabus</span>
-                            </div>
-                            <a href="#" class="text-indigo-600 hover:underline font-semibold">Download</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Students Section -->
-        <section id="students" class="py-20">
+        <section id="students" class="bg-white py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-3xl md:text-4xl font-bold">Meet Our Students</h2>
-                    <p class="text-gray-600 mt-2">Dedicated learners on their path to success. They exemplify commitment, perseverance, and excellence in their studies.
-We are proud to support and acknowledge their outstanding achievements.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold">Meet Our Star Students</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Dedicated learners who exemplify commitment, perseverance, and academic excellence. We are proud to celebrate their achievements.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                    <!-- Student Cards will have staggered animation -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover fade-in-section">
-                        <img id="student-img-1" src="DHANJI.jpeg" alt="Student 1" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-100">
-                        <h3 class="text-xl font-semibold">DHANJI TIWARI</h3>
-                        <p class="text-gray-500">Roll No: 1</p>
-                        <p class="text-gray-500">Class: 10th</p>
-                        <!-- <input type="file" class="hidden" id="upload-1" accept="image/*" onchange="previewImage(1)">
-                     <button onclick="document.getElementById('upload-1').click()" class="mt-4 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm hover:bg-indigo-200 transition duration-300">Change Image</button> --> 
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                    <div class="glass-card rounded-xl p-6 text-center fade-in-section">
+                        <img src="DHANJI.jpeg" alt="DHANJI TIWARI" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-md">
+                        <h3 class="text-xl font-semibold">DHANJI TIWARI</h3><p class="text-gray-500">Roll No: 1 | Class: 10th</p>
                     </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover fade-in-section" style="transition-delay: 100ms;">
-                        <img id="student-img-2" src="ROSHAN.jpeg" alt="Student 2" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-100">
-                        <h3 class="text-xl font-semibold">ROSHAN TIWARI</h3>
-                        <p class="text-gray-500">Roll No: 2</p>
-                        <p class="text-gray-500">Class: 10th</p>
-                         <!-- <input type="file" class="hidden" id="upload-2" accept="image/*" onchange="previewImage(2)">
-                         <button onclick="document.getElementById('upload-2').click()" class="mt-4 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm hover:bg-indigo-200 transition duration-300">Change Image</button> -->
+                    <div class="glass-card rounded-xl p-6 text-center fade-in-section" style="transition-delay: 100ms;">
+                        <img src="ROSHAN.jpeg" alt="ROSHAN TIWARI" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-md">
+                        <h3 class="text-xl font-semibold">ROSHAN TIWARI</h3><p class="text-gray-500">Roll No: 2 | Class: 10th</p>
                     </div> 
-                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover fade-in-section" style="transition-delay: 200ms;">
-                        <img id="student-img-3" src="HANUMAN.jpeg" alt="Student 3" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-100">
-                        <h3 class="text-xl font-semibold">HANUMAN TIWARI</h3>
-                        <p class="text-gray-500">Roll No: 3</p>
-                        <p class="text-gray-500">Class: 10th</p>
-                         <!-- <input type="file" class="hidden" id="upload-3" accept="image/*" onchange="previewImage(3)">
-                        <button onclick="document.getElementById('upload-3').click()" class="mt-4 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm hover:bg-indigo-200 transition duration-300">Change Image</button> -->
+                    <div class="glass-card rounded-xl p-6 text-center fade-in-section" style="transition-delay: 200ms;">
+                        <img src="HANUMAN.jpeg" alt="HANUMAN TIWARI" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-md">
+                        <h3 class="text-xl font-semibold">HANUMAN TIWARI</h3><p class="text-gray-500">Roll No: 3 | Class: 10th</p>
                     </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover fade-in-section" style="transition-delay: 300ms;">
-                        <img id="student-img-4" src="https://placehold.co/150x150/E2E8F0/4A5568?text=Student" alt="Student 4" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-100">
-                        <h3 class="text-xl font-semibold">VIVEK TIWARI</h3>
-                        <p class="text-gray-500">Roll No: 4</p>
-                        <p class="text-gray-500">Class: 10th</p>
-                         <!-- <input type="file" class="hidden" id="upload-4" accept="image/*" onchange="previewImage(4)">
-                        <button onclick="document.getElementById('upload-4').click()" class="mt-4 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm hover:bg-indigo-200 transition duration-300">Change Image</button> -->
+                    <div class="glass-card rounded-xl p-6 text-center fade-in-section" style="transition-delay: 300ms;">
+                        <img src="https://placehold.co/150x150/E2E8F0/4A5568?text=Amit" alt="AMIT TIWARI" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-md">
+                        <h3 class="text-xl font-semibold">AMIT TIWARI</h3><p class="text-gray-500">Roll No: 4 | Class: 10th</p>
                     </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover fade-in-section" style="transition-delay: 400ms;">
-                        <img id="student-img-5" src="https://placehold.co/150x150/E2E8F0/4A5568?text=Student" alt="Student 5" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-100">
-                        <h3 class="text-xl font-semibold">GOLU TIWARI</h3>
-                        <p class="text-gray-500">Roll No: 5</p>
-                        <p class="text-gray-500">Class: 10th</p>
-                         <!-- <input type="file" class="hidden" id="upload-5" accept="image/*" onchange="previewImage(5)">
-                        <button onclick="document.getElementById('upload-5').click()" class="mt-4 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm hover:bg-indigo-200 transition duration-300">Change Image</button>-->
+                    <div class="glass-card rounded-xl p-6 text-center fade-in-section" style="transition-delay: 400ms;">
+                        <img src="https://placehold.co/150x150/E2E8F0/4A5568?text=Golu" alt="GOLU TIWARI" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-md">
+                        <h3 class="text-xl font-semibold">GOLU TIWARI</h3><p class="text-gray-500">Roll No: 5 | Class: 10th</p>
                     </div> 
-                    
                 </div>
             </div>
         </section>
-        <!-- Tutor Section -->
-<section id="tutor" class="py-24 bg-gradient-to-r from-indigo-50 to-purple-50 relative overflow-hidden">
-    <!-- Floating Background Stationary Icons -->
-    <img src="https://img.icons8.com/ios/100/000000/pencil--v1.png" class="absolute top-10 left-10 w-12 opacity-10 animate-float-slow" />
-    <img src="https://img.icons8.com/ios/100/000000/open-book--v1.png" class="absolute bottom-20 right-10 w-16 opacity-10 animate-float" />
-    <div class="container mx-auto px-6 text-center relative z-10 fade-in-section">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Meet Your Tutor</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto mb-12">Guiding young minds with passion, patience, and purpose. Your success is our mission.</p>
-        <div class="flex flex-col items-center justify-center">
-            <img src="akhil3.jpeg" alt="Tutor" class="w-40 h-40 rounded-full border-4 border-indigo-200 shadow-lg object-cover mb-4">
-            <h3 class="text-2xl font-semibold text-indigo-700">Akhil Tiwari</h3>
-            <p class="text-gray-500 text-sm">Engineering student | Passionate Educator | Student helper</p>
-            <p class="mt-4 max-w-xl text-gray-700">I teach and mentor students with a focus on concept clarity, regular practice, and emotional support. Let’s grow together, one lesson at a time.</p>
+
+        <section id="testimonials" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in-section">
+                    <h2 class="text-3xl md:text-4xl font-bold">What Our Students Say</h2>
+                    <p class="text-gray-600 mt-2">Real stories from students who found success with us.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in-section">
+                        <p class="text-gray-600 mb-6">"The teaching methods here are incredible. Complex topics in math and science finally make sense! My confidence has skyrocketed."</p>
+                        <div class="flex items-center">
+                            <img src="DHANJI.jpeg" alt="DHANJI TIWARI" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div><h4 class="font-semibold">Dhanji Tiwari</h4><p class="text-sm text-gray-500">Class 10 Student</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in-section" style="transition-delay: 150ms;">
+                        <p class="text-gray-600 mb-6">"The PYQs and study materials provided were a game-changer for my board exam preparation. Highly recommended!"</p>
+                        <div class="flex items-center">
+                            <img src="ROSHAN.jpeg" alt="ROSHAN TIWARI" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div><h4 class="font-semibold">Roshan Tiwari</h4><p class="text-sm text-gray-500">Class 10 Student</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in-section" style="transition-delay: 300ms;">
+                        <p class="text-gray-600 mb-6">"A very supportive learning environment. The tutor is always ready to help and clear doubts, no matter how small."</p>
+                        <div class="flex items-center">
+                             <img src="HANUMAN.jpeg" alt="HANUMAN TIWARI" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div><h4 class="font-semibold">Hanuman Tiwari</h4><p class="text-sm text-gray-500">Class 10 Student</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutor" class="py-24 bg-white relative overflow-hidden">
+            <div class="container mx-auto px-6 text-center relative z-10 fade-in-section">
+                <div class="max-w-3xl mx-auto">
+                    <img src="akhil3.jpeg" alt="Tutor Akhil Tiwari" class="w-40 h-40 rounded-full border-4 border-indigo-200 shadow-xl object-cover mb-6 mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Meet Your Tutor, Akhil Tiwari</h2>
+                    <p class="text-indigo-600 font-medium mb-4">Engineering Student | Passionate Educator | Mentor</p>
+                    <p class="text-lg text-gray-700 leading-relaxed">"I believe in empowering students by building a strong conceptual foundation and fostering a curious mind. My approach combines clear teaching, regular practice, and unwavering support. Let’s embark on this learning journey together and turn your academic goals into reality."</p>
+                    <div class="mt-8">
+                        <a href="https://www.instagram.com/akhil_tiwari__247?igsh=czFnM3ZhaDhmejlm" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            Connect on Instagram
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.116 0-3.472.01-4.695.067-2.428.11-3.645 1.321-3.755 3.755-.057 1.222-.067 1.578-.067 4.695s.01 3.472.067 4.695c.11 2.433 1.327 3.645 3.755 3.755 1.222.057 1.578.067 4.695.067s3.472-.01 4.695-.067c2.428-.11 3.645-1.321 3.755-3.755.057-1.222.067-1.578.067-4.695s-.01-3.472-.067-4.695c-.11-2.433-1.327-3.645-3.755-3.755C15.472 3.975 15.116 3.965 12 3.965zM12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zm0 1.8a1.95 1.95 0 110 3.9 1.95 1.95 0 010-3.9zm4.65-3.21a.9.9 0 100 1.8.9.9 0 000-1.8z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-16 fade-in-section">
+                    <h2 class="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
+                </div>
+                <div class="space-y-4 fade-in-section">
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-lg">
+                            <span>What subjects are taught here?</span>
+                            <svg class="accordion-icon w-6 h-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <div class="accordion-content px-5 pb-5 text-gray-600"><p>We specialize in all major subjects for Class 10th under the Bihar Board curriculum, including Mathematics, Science (Physics, Chemistry, Biology), Social Science, English, Hindi, and Sanskrit.</p></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-lg">
+                            <span>How are tests conducted?</span>
+                            <svg class="accordion-icon w-6 h-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <div class="accordion-content px-5 pb-5 text-gray-600"><p>We conduct regular chapter-wise tests and surprise quizzes to ensure continuous revision. Full-length mock tests are scheduled closer to the board exams to simulate the real exam environment and help with time management.</p></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-lg">
+                            <span>Is there any support for clearing doubts?</span>
+                            <svg class="accordion-icon w-6 h-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <div class="accordion-content px-5 pb-5 text-gray-600"><p>Absolutely! Doubt-clearing is a priority. We encourage students to ask questions during class and also have dedicated sessions for resolving any queries they might have.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div >
+            <p >“This webpage has been created manually by Akhil Tiwari, so there may be errors or sections under construction. We are continuously updating it by adding more useful content and new features, such as test series and score tracking for your board exams.”</p>
         </div>
-        <a href="https://www.instagram.com/akhil_tiwari__247?igsh=czFnM3ZhaDhmejlm">@instagram</a>
-    </div>
-</section>
-<DIV>
-    “This webpage has been created manually by Akhil Tiwari, so there may be errors or sections under construction. We are continuously updating it by adding more useful content and new features, such as test series and score tracking for your board exams.”
-</DIV>
-       
+            
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-10">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Smart Minds Hub. All Rights Reserved.</p>
-            <p> contact us: 9142150166</p>
-            <p class="text-sm text-gray-400 mt-1">Powered by smart minds hub</p>
-            
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">Smart Minds Hub</h3>
+                    <p class="text-gray-400">Your partner in achieving academic excellence through personalized tutoring and quality resources. Paving the pathway to success, one student at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                        <li><a href="#materials" class="hover:text-white transition">Materials</a></li>
+                        <li><a href="#students" class="hover:text-white transition">Students</a></li>
+                        <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                     <ul class="space-y-2 text-gray-400">
+                        <li>Phone: <a href="tel:9142150166" class="hover:text-white transition">9142150166</a></li>
+                        <li><a href="https://www.instagram.com/akhil_tiwari__247?igsh=czFnM3ZhaDhmejlm" target="_blank" class="hover:text-white transition">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 Smart Minds Hub. All Rights Reserved. Designed by Akhil Tiwari.</p>
+            </div>
         </div>
     </footer>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -328,47 +403,77 @@ We are proud to support and acknowledge their outstanding achievements.</p>
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Image preview for student cards
-        function previewImage(studentId) {
-            const fileInput = document.getElementById('upload-' + studentId);
-            const imagePreview = document.getElementById('student-img-' + studentId);
-            const file = fileInput.files[0];
-            
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-        
         // Fade-in on scroll observer
         const sections = document.querySelectorAll('.fade-in-section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1
-        });
+        }, { threshold: 0.1 });
 
         sections.forEach(section => {
             observer.observe(section);
         });
 
-        // Header style on scroll
-        const header = document.getElementById('header');
-        window.onscroll = function() {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
+        // Animated Counters
+        const counters = document.querySelectorAll('[data-target]');
+        const speed = 200; // The lower the #, the faster the count
+
+        const animateCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(() => animateCounter(counter), 1);
             } else {
-                header.classList.remove('header-scrolled');
+                counter.innerText = target;
             }
         };
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    counters.forEach(counter => animateCounter(counter));
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.8 });
+        
+        if(counters.length > 0){
+             counterObserver.observe(document.querySelector('.grid.gap-8.text-center'));
+        }
 
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                // Close other open accordions
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header) {
+                        otherHeader.nextElementSibling.style.maxHeight = null;
+                        otherHeader.querySelector('.accordion-icon').classList.remove('rotate-180');
+                    }
+                });
+
+                // Toggle current accordion
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('rotate-180');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                } 
+            });
+        });
+    });
     </script>
 
 </body>
